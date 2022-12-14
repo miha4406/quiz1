@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 
 
 public class QuizCtrl : MonoBehaviour
@@ -15,6 +16,7 @@ public class QuizCtrl : MonoBehaviour
     [SerializeField] Text varText3;
 
     List<Questions> questList = new List<Questions>();
+    
 
     int currStage;
     int currQuestNo, corrAnswNo;
@@ -68,42 +70,24 @@ public class QuizCtrl : MonoBehaviour
     {
         if (currStage == 1)
         {
-            questList.Add(new Questions("quest1-1", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest1-2", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest1-3", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest1-4", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest1-5", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest1-6", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest1-7", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest1-8", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest1-9", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest1-10", "answ1", "answ2", "answ3", "btn1"));
+            foreach(string s in MotoData.Json1)
+            {                
+                questList.Add(JsonConvert.DeserializeObject<Questions>(s));
+            }
         }
         else if (currStage == 2)
         {
-            questList.Add(new Questions("quest2-1", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest2-2", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest2-3", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest2-4", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest2-5", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest2-6", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest2-7", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest2-8", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest2-9", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest2-10", "answ1", "answ2", "answ3", "btn1"));
+            foreach (string s in MotoData.Json2)
+            {
+                questList.Add(JsonConvert.DeserializeObject<Questions>(s));
+            }
         }
         else if (currStage == 3)
         {
-            questList.Add(new Questions("quest3-1", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest3-2", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest3-3", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest3-4", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest3-5", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest3-6", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest3-7", "answ1", "answ2", "answ3", "btn1"));
-            questList.Add(new Questions("quest3-8", "answ1", "answ2", "answ3", "btn2"));
-            questList.Add(new Questions("quest3-9", "answ1", "answ2", "answ3", "btn3"));
-            questList.Add(new Questions("quest3-10", "answ1", "answ2", "answ3", "btn1"));
+            foreach (string s in MotoData.Json3)
+            {
+                questList.Add(JsonConvert.DeserializeObject<Questions>(s));
+            }
         }
         else { print(currStage); }
     }
