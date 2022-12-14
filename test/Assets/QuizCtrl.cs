@@ -3,7 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
-
+//using UniRx.Async;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class QuizCtrl : MonoBehaviour
 {
@@ -17,10 +19,9 @@ public class QuizCtrl : MonoBehaviour
 
     List<Questions> questList = new List<Questions>();
     
-
     int currStage;
     int currQuestNo, corrAnswNo;
-
+    CancellationTokenSource cts;
 
     public struct Questions   
     {
@@ -58,10 +59,13 @@ public class QuizCtrl : MonoBehaviour
 
 
     void Start()
-    {
+    {    
         AddQuestions();
                 
-        ReadQuestions();       
+        ReadQuestions();
+
+        cts = new CancellationTokenSource();
+        Delay10sec();
 
     }
 
@@ -101,10 +105,11 @@ public class QuizCtrl : MonoBehaviour
         varText3.text = questList[currQuestNo].Var3;
     }
 
-    void CheckQuestion()
+    void CheckQuestion()  //on click
     {
-        GameObject btn = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+        cts.Cancel();
         
+        GameObject btn = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;        
         if(btn.name == questList[currQuestNo].Cor)
         {
             print("Correct");
@@ -121,6 +126,8 @@ public class QuizCtrl : MonoBehaviour
         else {
             ShowResult();
         }
+
+        Delay10sec();
     }
 
     void ShowResult()
@@ -144,6 +151,28 @@ public class QuizCtrl : MonoBehaviour
             print("LOSE");
             SceneManager.LoadScene(currStage);
         }
+
+    }
+
+
+    async UniTask Delay10sec ()
+    {
+        cts = new CancellationTokenSource();
+
+        await UniTask.Delay(10000, cancellationToken: cts.Token);  //10sec
+
+        print("TIME OUT");
+        currQuestNo++;
+        if (currQuestNo < 10)  //quest
+        {
+            ReadQuestions();
+            Delay10sec();
+        }
+        else
+        {
+            ShowResult();
+        }
+        
     }
 
 }
