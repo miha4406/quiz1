@@ -1,0 +1,27 @@
+.button {
+    font-size: 25px;
+}
+
+.button:hover {
+    color: rgb(0, 178, 204);
+    font-size: 25px;
+    -unity-font-style: bold;
+    -unity-background-image-tint-color: rgba(7, 7, 7, 255);
+    background-color: rgba(49, 255, 176, 255);
+}
+
+.varBtn {
+    align-items: stretch;
+    justify-content: center;
+    width: 75%;
+    height: 25%;
+    font-size: 15px;
+    -unity-text-align: middle-left;
+    background-color: rgba(67, 67, 67, 255);
+}
+
+.varBtn:hover {
+    background-color: rgba(248, 248, 248, 255);
+    color: rgba(19, 18, 18, 255);
+    -unity-font-style: bold;
+}

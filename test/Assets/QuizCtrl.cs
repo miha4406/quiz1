@@ -1,21 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
 //using UniRx.Async;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 
 public class QuizCtrl : MonoBehaviour
 {
-    [SerializeField] Text questText;
-    [SerializeField] Button btn1;
-    [SerializeField] Text varText1;
-    [SerializeField] Button btn2;
-    [SerializeField] Text varText2;
-    [SerializeField] Button btn3;
-    [SerializeField] Text varText3;
+    
+    Label questLabel;
+    [SerializeField] Button btn1;    
+    [SerializeField] Button btn2;    
+    [SerializeField] Button btn3;    
+    [SerializeField] UIDocument ui;
 
     List<Questions> questList = new List<Questions>();
     
@@ -51,10 +52,16 @@ public class QuizCtrl : MonoBehaviour
         currStage = SceneManager.GetActiveScene().buildIndex;
         currQuestNo = 0;
         corrAnswNo = 0;
-
-        btn1.onClick.AddListener(() => CheckQuestion());
-        btn2.onClick.AddListener(() => CheckQuestion());
-        btn3.onClick.AddListener(() => CheckQuestion());
+               
+        questLabel = ui.rootVisualElement.Q<Label>("questLabel");
+        btn1 = ui.rootVisualElement.Q<Button>("btn1");        
+        btn2 = ui.rootVisualElement.Q<Button>("btn2");      
+        btn3 = ui.rootVisualElement.Q<Button>("btn3");
+       
+        btn1.clicked += () => CheckQuestion(btn1);
+        btn2.clicked += () => CheckQuestion(btn2);
+        btn3.clicked += () => CheckQuestion(btn3);
+        
     }
 
 
@@ -99,18 +106,17 @@ public class QuizCtrl : MonoBehaviour
 
     void ReadQuestions()
     {        
-        questText.text = questList[currQuestNo].Question;
-        varText1.text = questList[currQuestNo].Var1;
-        varText2.text = questList[currQuestNo].Var2;
-        varText3.text = questList[currQuestNo].Var3;
+        questLabel.text = questList[currQuestNo].Question;
+        btn1.text = questList[currQuestNo].Var1;
+        btn2.text = questList[currQuestNo].Var2;
+        btn3.text = questList[currQuestNo].Var3;
     }
 
-    void CheckQuestion()  //on click
+    void CheckQuestion(Button clBtn)  //on click
     {
-        cts.Cancel();
-        
-        GameObject btn = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;        
-        if(btn.name == questList[currQuestNo].Cor)
+        cts.Cancel();            
+
+        if (clBtn.name == questList[currQuestNo].Cor)        
         {
             print("Correct");
             corrAnswNo++;
@@ -157,10 +163,11 @@ public class QuizCtrl : MonoBehaviour
 
     async UniTask Delay10sec ()
     {
-        cts = new CancellationTokenSource();
+        cts = new CancellationTokenSource();        
 
-        await UniTask.Delay(10000, cancellationToken: cts.Token);  //10sec
+        await UniTask.Delay(10000, cancellationToken: cts.Token);   //10sec
 
+        //await Task.Run(() => { }, cancellationToken);
         print("TIME OUT");
         currQuestNo++;
         if (currQuestNo < 10)  //quest
@@ -172,7 +179,7 @@ public class QuizCtrl : MonoBehaviour
         {
             ShowResult();
         }
-        
+
     }
 
 }

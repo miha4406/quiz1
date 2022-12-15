@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/styles.uss?fileID=7433441132597879392&amp;guid=8b0fab8d422e58f4e8645935af1f65a4&amp;type=3#styles" />
+    <ui:VisualElement style="flex-direction: column; height: 100%; width: 100%; top: auto; background-color: rgb(0, 0, 0);" />
+    <ui:VisualElement style="height: 242px; align-items: center; width: 750px; flex-direction: column; justify-content: center; position: absolute; top: 248px; left: auto; background-image: none; background-color: rgba(255, 255, 255, 0); opacity: 1;">
+        <ui:Button text="Button" display-tooltip-when-elided="true" name="btn1" class="varBtn" />
+        <ui:Button text="Button" display-tooltip-when-elided="true" name="btn2" class="varBtn" />
+        <ui:Button text="Button" display-tooltip-when-elided="true" name="btn3" class="varBtn" />
+    </ui:VisualElement>
+    <ui:Label text="Label" display-tooltip-when-elided="true" name="questLabel" style="height: 35%; width: 90%; left: 40px; -unity-text-align: upper-left; position: absolute; top: 68px; font-size: 25px; color: rgb(0, 0, 0); align-items: auto; justify-content: flex-start; background-color: rgb(161, 161, 161);" />
+    <ui:Label text="ステージ：１      問題数：１０      クリア率： 50％" display-tooltip-when-elided="true" name="stageLabel" style="width: 738px; position: absolute; height: 36px; top: 10px; align-items: center; justify-content: center; -unity-text-align: upper-left; font-size: 20px; left: 11px; color: rgb(23, 142, 255); -unity-font-style: bold;" />
+</ui:UXML>

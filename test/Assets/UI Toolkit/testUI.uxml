@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/styles.uss?fileID=7433441132597879392&amp;guid=8b0fab8d422e58f4e8645935af1f65a4&amp;type=3#styles" />
+    <ui:VisualElement>
+        <ui:VisualElement name="container" style="height: 501px; align-items: center; width: 750px; flex-direction: column; justify-content: center; position: relative; top: auto; left: auto; background-image: url(&apos;project://database/Assets/title.bmp?fileID=2800000&amp;guid=aa11ff9e306db0540ad06f333a44e326&amp;type=3#title&apos;);">
+            <ui:Label text="TEST GAME LABEL" display-tooltip-when-elided="true" style="width: 126px; position: relative; height: 22px; top: 50%; align-items: center; justify-content: center; -unity-text-align: upper-center; font-size: 13px; left: auto; color: rgb(255, 255, 255);" />
+            <ui:Button text="START" display-tooltip-when-elided="true" name="startBtn" class="button" style="align-items: center; justify-content: center; position: relative; height: 43px; width: 244px; left: auto; font-size: 25px; color: rgb(0, 0, 0);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
