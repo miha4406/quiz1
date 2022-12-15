@@ -8,4 +8,10 @@
     </ui:VisualElement>
     <ui:Label text="Label" display-tooltip-when-elided="true" name="questLabel" style="height: 35%; width: 90%; left: 40px; -unity-text-align: upper-left; position: absolute; top: 68px; font-size: 25px; color: rgb(0, 0, 0); align-items: auto; justify-content: flex-start; background-color: rgb(161, 161, 161);" />
     <ui:Label text="ステージ：２      問題数：１０      クリア率： 50％" display-tooltip-when-elided="true" name="stageLabel" style="width: 738px; position: absolute; height: 36px; top: 10px; align-items: center; justify-content: center; -unity-text-align: upper-left; font-size: 20px; left: 11px; color: rgb(23, 142, 255); -unity-font-style: bold;" />
+    <ui:VisualElement name="resultPanel" style="position: absolute; width: 750px; height: 80px; top: 126px; background-color: rgb(241, 230, 230); align-items: center; justify-content: center;">
+        <ui:Label text="RESULT" display-tooltip-when-elided="true" name="resultLabel" style="height: 50px; width: 50%; align-items: stretch; color: rgb(255, 18, 18); -unity-font-style: bold; font-size: 45px; -unity-text-align: middle-center;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="answerPanel" style="position: absolute; width: 750px; height: 80px; top: 126px; background-color: rgb(241, 230, 230); align-items: center; justify-content: center;">
+        <ui:Label text="CHOICE" display-tooltip-when-elided="true" name="answerLabel" style="height: 50px; width: 50%; align-items: stretch; color: rgb(255, 18, 18); -unity-font-style: normal; font-size: 45px; -unity-text-align: middle-center;" />
+    </ui:VisualElement>
 </ui:UXML>
